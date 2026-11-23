@@ -1,0 +1,31 @@
+[project]
+name = "helpdesk"
+version = "0.1.0"
+description = "Reference layout for a multi-agent LangGraph service with Spanner persistence."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "langchain>=1.5,<2",
+    "langgraph>=1.2,<2",
+    "langchain-anthropic>=1.7,<2",
+    "google-cloud-spanner>=3.72,<4",
+    "pydantic-settings>=2.16,<3",
+]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.14"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["spanner: needs the Spanner emulator (set SPANNER_EMULATOR_HOST)"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
